@@ -30,7 +30,7 @@ direzione del campo elettrico risultante nel punto $O$.
 \begin{hint}
 Per risolvere l’integrale
 \[
-    \mathcal{I} = \int_{0}^{\infty} \frac{R}{(x^2 + R^2)^{3/2}} \, \dd x
+    \mathcal{I} = \int_{0}^{\infty} \frac{R}{(x^2 + R^2)^{3/2}} \, dx
 \]
 potete usare la sostituzione $x / R = \tan u$. Vi invito a provare a fare i
 conti, ma se non riuscite a proseguire passate direttamente al risultato
@@ -54,11 +54,11 @@ finita.
    \draw[latex-latex] (-0.2, 0) -- ++(0, 2) node[midway, anchor=east] {$R$};
    \draw[dashed] (3, 0) -- (0, 2);
    \draw[-latex] (0, 2) -- ++({180 - atan(2 / 3)}:1) 
-       node[midway, anchor=south west] {$\dd \vec{E}$}
+       node[midway, anchor=south west] {$d\vec{E}_1$}
        coordinate[pos=1] (A);
    \draw (2.8, -0.05) -- ++(0, 0.1);
    \draw (3.2, -0.05) -- ++(0, 0.1);
-   \draw[thick] (2.8, 0) -- (3.2, 0) node[midway, above] {$\dd x$};
+   \draw[thick] (2.8, 0) -- (3.2, 0) node[midway, above] {$dx$};
    \draw[latex-latex] (0, -0.2) -- ++(3, 0) node[midway, below] {$x$};
    \draw ($(3, 0) + ({180 - atan(2 / 3)}:0.75)$) arc
        ({180 - atan(2 / 3)}:180:0.75) node[midway, anchor=east] {$\theta$};
@@ -67,39 +67,38 @@ finita.
 \label{fig:thread-field}
 \end{figure}
 
-
 Facendo riferimento a figura~\ref{fig:thread-field}, partiamo considerando
-un pezzetto infinitesimo di filo $\dd x$, che avrà carica $\lambda\,\dd x$
-e produrrà nel punto di coordinate $x = 0$ e $y = R$ un campo di modulo
+un pezzetto infinitesimo di filo $dx$, che ha carica $\lambda\,dx$
+e produce nel punto di coordinate $x = 0$ e $y = R$ un campo di modulo
 \begin{equation}
-    \dd E = \frac{\lambda\, \dd x}{4 \pi \epsilon_0 (x^2 + R^2)}.
+    dE_1 = \frac{\lambda\, dx}{4 \pi \epsilon_0 (x^2 + R^2)}.
     \label{eq:thread-field-dd}
 \end{equation}
 Possiamo scomporre tale campo nelle componenti $x$ e $y$: seguendo il
-disegno, la componente $x$ sarà negativa e pari a
+disegno, la componente $x$ è negativa e pari a
 \begin{equation}
-    \dd E_x = - \frac{\lambda\, \dd x}{4 \pi \epsilon_0 (x^2 + R^2)}
+    dE_{1,x} = - \frac{\lambda\, dx}{4 \pi \epsilon_0 (x^2 + R^2)}
     \cos\theta = - \frac{\lambda x}{4 \pi \epsilon_0 (x^{2} +
-    R^{2})^{3/2}} \, \dd x.
+    R^{2})^{3/2}} \, dx.
 \end{equation}
 
 Da qui, possiamo integrare lungo $x$, partendo da $x = 0$ e proseguendo
-fino all’infinito, per ottenere la componente $x$ del campo prodotto dal
-filo intero:
+fino all’infinito, per ottenere la componente $x$ del campo prodotto
+dall’intero filo:
 \begin{equation}
-    E_x = -\frac{\lambda}{4 \pi \epsilon_0} \int_{0}^{\infty}
-    \frac{x}{(x^{2} + R^{2})^{3/2}}\, \dd x.
+    E_{1,x} = -\frac{\lambda}{4 \pi \epsilon_0} \int_{0}^{\infty}
+    \frac{x}{(x^{2} + R^{2})^{3/2}}\, dx.
 \end{equation}
 Per risolvere l’integrale possiamo sfruttare la sostituzione $u^2 = x^2 +
 R^2$, che differenziata restituisce
 \begin{equation}
-    \cancel{2}u \, \dd u = \cancel{2}x \, \dd x.
+    \cancel{2}u \, du = \cancel{2}x \, dx.
 \end{equation}
 Pertanto, ricordando di trasformare anche gli estremi di integrazione,
 otteniamo
 \begin{equation}
-    E_x = - \frac{\lambda}{4 \pi \epsilon_0} \int_{R}^{\infty}
-    \frac{\cancel{u}}{u^{\cancel{3}\, 2}} \, \dd u = - \frac{\lambda}{4 \pi
+    E_{1,x} = - \frac{\lambda}{4 \pi \epsilon_0} \int_{R}^{\infty}
+    \frac{\cancel{u}}{u^{\cancel{3}\, 2}} \, du = - \frac{\lambda}{4 \pi
     \epsilon_0} \left[-\frac{1}{u}\right]_{R}^{\infty} = -
     \frac{\lambda}{4\pi\epsilon_0 R}.
 \end{equation}
@@ -107,29 +106,162 @@ otteniamo
 Ritorniamo ora all’espressione del campo infinitesimo
 \eqref{eq:thread-field-dd} e consideriamone invece la componente $y$:
 \begin{equation}
-    \dd E_y = \frac{\lambda\, \dd x}{4\pi\epsilon_0 (x^{2} + R^{2})}
+    dE_{1,y} = \frac{\lambda\, dx}{4\pi\epsilon_0 (x^{2} + R^{2})}
     \sin\theta,
 \end{equation}
 che sostituendo l’espressione per $\sin\theta$, ricavata anche qui dal
 disegno, diventa
 \begin{equation}
-    \dd E_y = \frac{\lambda}{4\pi\epsilon_0} \frac{R}{(x^{2} +
-    R^{2})^{3/2}}\, \dd x.
+    dE_{1,y} = \frac{\lambda}{4\pi\epsilon_0} \frac{R}{(x^{2} +
+    R^{2})^{3/2}}\, dx.
 \end{equation}
 Ora possiamo integrare lungo $x$, come prima:
 \begin{equation}
-    E_y = \frac{\lambda}{4\pi\epsilon_0} \int_{0}^{\infty} \frac{R}{(x^{2}
-    + R^{2})^{3/2}} \, \dd x.
+    E_{1,y} = \frac{\lambda}{4\pi\epsilon_0} \int_{0}^{\infty}
+    \frac{R}{(x^{2} + R^{2})^{3/2}} \, dx.
+    \label{eq:thread-field-ey}
 \end{equation}
 
 Sfortunatamente, l’assenza di $x$ al numeratore complica notevolmente
 l’integrale. Una possibile strada per risolverlo è quella indicata dal
 suggerimento. Partiamo riarrangiando i termini al denominatore:
 \begin{equation}
-    \int_{0}^{\infty} \frac{R}{(x^{2} + R^{2})^{3/2}} \, \dd x =
-    \int_{0}^{\infty} \frac{R}{[R^2(1 + x^2 / R^2)]^{3/2}}\, \dd x =
+    \int_{0}^{\infty} \frac{R}{(x^{2} + R^{2})^{3/2}} \, dx =
+    \int_{0}^{\infty} \frac{R}{[R^2(1 + x^2 / R^2)]^{3/2}}\, dx =
     \frac{1}{R^2} \int_{0}^{\infty} \frac{1}{(1 + x^{2} / R^{2})^{3/2}}\,
-    \dd x.
+    dx,
+    \label{eq:ugly-integral}
+\end{equation}
+e usiamo la sostituzione indicata:
+\begin{equation}
+    x = R \tan u \implies 1 + \frac{x^{2}}{R^{2}} = 1 + \tan^2 u =
+    \frac{1}{\cos^2 u}.
+\end{equation}
+Diferenziando $x^2 / R^2 = \tan^2 u$ otteniamo
+\begin{equation}
+    \frac{2 x \,dx}{R^{2}} = 2 \tan u \,\diff{}{u}(\tan u) \, du =
+    \frac{2 \tan u \, du}{\cos^{2}u},
+\end{equation}
+che, semplificando i $2$ e dividendo per $x = R \tan u$, diventa
+\begin{equation}
+    \frac{dx}{R^{2}} = \frac{du}{R \cos^{2}u}.
+\end{equation}
+Mancano gli estremi di integrazione, che si possono trasformare così:
+\begin{equation}
+    x = 0 \to u = 0, \quad x = \infty \to u = \frac{\pi}{2}.
+\end{equation}
+
+Procediamo quindi a sostituire dentro \eqref{eq:ugly-integral}, ottenendo
+\begin{equation}
+\begin{split}
+    \int_{0}^{\infty} \frac{R}{(x^{2} + R^{2})^{3/2}} \, dx 
+    &= \int_{0}^{\pi/2} \cos^{3} u \, \frac{du}{R \cos^{2} u} \\
+    &= \frac{1}{R} \int_{0}^{\pi/2} \cos u \, du \\
+    &= \frac{1}{R} [\sin u]_{0}^{\pi/2} = \frac{1}{R}.
+\end{split}
+\end{equation}
+Sostituiamo quindi il risultato dentro \eqref{eq:thread-field-ey}:
+\begin{equation}
+    E_{1, y} = \frac{\lambda}{4 \pi \epsilon_0 R}.
+\end{equation}
+
+Riassumendo, il campo prodotto dal filo in figura~\ref{fig:thread-field}
+ha componenti $x$ e $y$ uguali, ed è pertanto diretto a $45$ gradi
+rispetto all’orizzontale, con modulo
+\begin{equation}
+    E_1 = \sqrt{\left(-\frac{\lambda}{4\pi\epsilon_0
+    R}\right)^{2} + \left(\frac{\lambda}{4\pi\epsilon_0 R}\right)^{2}} =
+    \frac{\sqrt{2} \lambda}{4\pi\epsilon_0 R}.
+\end{equation}
+Il tratto di filo rettilineo posto in verticale produce un campo
+$\vec{E}_2$ di uguale modulo e direzione, ma verso opposto: si faccia
+riferimento a figura \ref{fig:field-of-straight-threads}. Il campo
+risultante dalla somma è quindi nullo; rimane soltanto il contributo del
+tratto curvo di filo, che ora calcoleremo.
+
+\begin{figure}
+\centering 
+\begin{tikzpicture}
+    \draw[dotted] (0, 3) -- (0, 2.5);
+    \draw (0, 2.5) -- (0, 1) node[midway, anchor=east] {$2$};
+    \draw (1, 0) -- (2.5, 0) node[midway, below] {$1$};
+    \draw[dotted] (2.5, 0) -- (3, 0);
+    \node[fill, circle, inner sep=1pt] at (1, 1) {};    
+    \draw[-latex] (1, 1) -- ++(-45:0.75)
+        node[midway, anchor=south west, inner sep=1pt] {$\vec{E}_2$};
+    \draw[-latex] (1, 1) -- ++(135:0.75)
+        node[midway, anchor=south west, inner sep=1pt] {$\vec{E}_1$};
+    \draw[dashed] (1, 0) -- (1, 1) node[midway, anchor=east] {$R$};
+    \draw[dashed] (0, 1) -- (1, 1);
+    \draw ($(1, 1) + (135:0.4)$) arc (135:180:0.4)
+        node[midway, anchor=east, inner sep=1pt] {\tiny\qty{45}{\degree}};
+\end{tikzpicture}
+\caption{i campi prodotti dai due tratti rettilinei di filo. In modulo sono
+uguali e la direzione è la stessa ma con verso opposto, perciò la
+risultante è nulla.}
+\label{fig:field-of-straight-threads}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{tikzpicture}
+    \draw[name path=arc] (0, 2) arc (180:270:2);
+    \draw[name path=radius1, dashed] (2, 2) -- ++(205:2);
+    \draw[name path=radius2, dashed] (2, 2) -- ++(215:2);
+    \draw[-latex] (2, 2) -- ++(30:1)
+        node[near end, anchor=south east, inner sep=1pt] {$d\vec{E}$};
+    \draw[-latex] (2, 2) -- ++({cos(30)}, 0)
+        node[midway, below] {$d\vec{E}_x$};
+    \draw[-latex] (2, 2) -- ++(0, {sin(30)})
+        node[midway, anchor=east] {$d\vec{E}_y$};
+    \draw (2.4, 2) arc (0:30:0.4)
+        node[pos=0.6, anchor=west, inner sep=1pt] {\footnotesize$\theta$};
+    \draw ($(2, 2) + (205:1.3)$) arc (205:215:1.3)
+        node[fill=white, midway, anchor=north east, inner sep=1pt]
+        {$d\theta$};
+    \fill (2, 2) circle (1pt);
+
+    \path[name intersections={of=radius1 and arc, by=s1}];
+    \path[name intersections={of=radius2 and arc, by=s2}];
+    \draw (s1) -- ++(205:0.05);
+    \draw (s2) -- ++(215:0.05);
+    \draw[thick] (s1) arc (205:215:2)
+        node[midway, anchor=north east, inner sep=1pt] {$d\ell$};
+\end{tikzpicture}
+\caption{impostazione grafica del calcolo del campo prodotto dal tratto
+curvo di filo.}
+\label{fig:curved-thread-dd}
+\end{figure}
+
+Il calcolo si può impostare come in figura~\ref{fig:curved-thread-dd}:
+cominciamo considerando un tratto infinitesimo (curvo) di filo $d\ell$, che
+avrà carica $\lambda \, d\ell$. Il campo prodotto in $O$ ha componenti
+\begin{equation}
+    dE_x = \frac{\lambda \, d\ell}{4\pi\epsilon_0 R^{2}} \cos\theta, \quad
+    dE_y = \frac{\lambda \, d\ell}{4\pi\epsilon_0 R^{2}} \sin\theta.
+\end{equation}
+Possiamo poi riscrivere $d\ell$ come $R\, d\theta$, così da poter
+integrare su $\theta$. Otteniamo perciò, per la componente $x$ totale,
+\begin{equation}
+    E_x = \frac{\lambda}{4 \pi \epsilon_0} \int_{0}^{\pi/2} \cos\theta \,
+    d\theta = \frac{\lambda}{4 \pi \epsilon_0} [\sin\theta]_{0}^{\pi/2} =
+    \frac{\lambda}{4\pi\epsilon_0 R},
+\end{equation}
+e per la componente $y$
+\begin{equation}
+    E_y = \frac{\lambda}{4 \pi \epsilon_0} \int_{0}^{\pi/2} \sin\theta \,
+    d\theta = \frac{\lambda}{4\pi\epsilon_0} [-\cos\theta]_{0}^{\pi/2} =
+    \frac{\lambda}{4\pi\epsilon_0 R}.
+\end{equation}
+
+Le due componenti sono uguali, pertanto l’angolo del vettore $\vec{E}$
+risultante è di \qty{45}{\degree} rispetto all’asse $x$. Il modulo
+vale
+\begin{equation}
+    E = \sqrt{\smash[b]{E_x^{2} + E_y^{2}}} = 
+    \sqrt{\left(\frac{\lambda}{4\pi\epsilon_0 R}\right)^{2} +
+    \left(\frac{\lambda}{4\pi\epsilon_0 R}\right)^{2}} = \frac{\sqrt{2}
+    \lambda}{4 \pi\epsilon_0 R}.
 \end{equation}
 \end{solution}
 \end{document}
