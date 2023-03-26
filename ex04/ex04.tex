@@ -1,0 +1,46 @@
+\documentclass[10pt]{gulartcl}
+\usepackage{../exstyle}
+
+\title{Esercizio settimanale n. 4}
+\author{Guglielmo Bordin}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\noindent
+Su un filo sottile di lunghezza infinita è presente una densità di carica
+uniforme $\lambda = \qty{-2}{nC \per cm}$. All’esterno del cavo, coassiale
+a esso, è posto un guscio cilindrico di lunghezza infinita e carico
+uniformemente, di raggio interno $a = \qty{1}{cm}$ e raggio esterno $b =
+\qty{3}{cm}$.  Calcolare la densità di carica volumetrica $\rho$ del guscio
+cilindrico sapendo che il campo elettrico totale al suo esterno è nullo.
+
+\bigbreak
+\begin{center}
+\begin{tikzpicture}[>=latex]
+    % external cylinder
+    \draw[name path=bot-outer-ell] (-1.2, 0) arc (180:360:1.2 and 0.4); 
+    \draw[densely dashed] (1.2, 0) arc (0:180:1.2 and 0.4);
+    \draw (-1.2, 0) -- +(0, 3) (1.2, 0) -- +(0, 3);
+    \draw[pattern=north east lines] (0, 3) ellipse (1.2 and 0.4);
+    
+    % inner cylinder
+    \draw[densely dashed] (0, 0) ellipse (0.8 and 0.2);
+    \draw[densely dashed] (-0.8, 0) -- +(0, 3) (0.8, 0) -- +(0, 3);
+    \draw[name path=top-inner-ell, fill=white] (0, 3) ellipse (0.8 and 0.2);
+
+    % thread
+    \path[name path=thread] (0, -1) -- (0, 3);
+    \draw[densely dashed,
+          name intersections={of=thread and bot-outer-ell, by=z1},
+          name intersections={of=thread and top-inner-ell, by=z2}]
+        (z1) -- (z2);
+    \draw (0, -1) -- (z1) (z2) -- +(0, 1) node[pos=0.9, right] {$\lambda$};
+
+    \node[right] at (1.2, 2) {$\rho$};
+    \draw[<->] (0, 1.8) -- +(-0.8, 0) node[midway, below] {$a$}; 
+    \draw[<->] (0, 1) -- +(1.2, 0) node[pos=0.4, below] {$b$};
+\end{tikzpicture} 
+\end{center}
+\end{document}
