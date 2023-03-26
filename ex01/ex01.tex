@@ -9,7 +9,7 @@
 \newcommand{\hexagon}{%
     \newdimen\side
     \side = 2cm
-    \draw[dashed] (0:\side) \foreach \angle in {60, 120, ..., 360}{
+    \draw[densely dashed] (0:\side) \foreach \angle in {60, 120, ..., 360}{
         -- (\angle:\side)
     };
     \foreach \i/\pos in
