@@ -45,6 +45,29 @@ esaminiamo il problema generico del campo prodotto da un filo infinitamente
 esteso lungo una sola direzione, in un punto distante $R$ dall’estremità
 finita.
 
+\begin{figure}
+\centering
+\begin{tikzpicture}
+   \draw (0, 0) -- (5, 0);
+   \draw[dotted] (5, 0) -- ++(0.5, 0);
+   \draw[dashed] (0, 0) -- ++(0, 2);
+   \draw[latex-latex] (-0.2, 0) -- ++(0, 2) node[midway, anchor=east] {$R$};
+   \draw[dashed] (3, 0) -- (0, 2);
+   \draw[-latex] (0, 2) -- ++({180 - atan(2 / 3)}:1) 
+       node[midway, anchor=south west] {$\dd \vec{E}$}
+       coordinate[pos=1] (A);
+   \draw (2.8, -0.05) -- ++(0, 0.1);
+   \draw (3.2, -0.05) -- ++(0, 0.1);
+   \draw[thick] (2.8, 0) -- (3.2, 0) node[midway, above] {$\dd x$};
+   \draw[latex-latex] (0, -0.2) -- ++(3, 0) node[midway, below] {$x$};
+   \draw ($(3, 0) + ({180 - atan(2 / 3)}:0.75)$) arc
+       ({180 - atan(2 / 3)}:180:0.75) node[midway, anchor=east] {$\theta$};
+\end{tikzpicture}
+\caption{analisi del campo prodotto da uno dei tratti rettilinei di filo.}
+\label{fig:thread-field}
+\end{figure}
+
+
 Facendo riferimento a figura~\ref{fig:thread-field}, partiamo considerando
 un pezzetto infinitesimo di filo $\dd x$, che avrà carica $\lambda\,\dd x$
 e produrrà nel punto di coordinate $x = 0$ e $y = R$ un campo di modulo
