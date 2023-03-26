@@ -13,11 +13,11 @@ rm -f *.!(tex)
 
 # generate pdf without solution
 latexmk -jobname=$fname -g -silent -pdf -pdflatex='pdflatex %O -halt-on-error -synctex=1 "\def\hidesolutions{1}\input{%S}"' $fname
-mv $fname.pdf ../es"$1"-testo.pdf
+mv $fname.pdf ../pdf/es"$1"-testo.pdf
 
 # generate pdf with solution
 latexmk -jobname=$fname -g -silent -pdf -pdflatex='pdflatex %O -halt-on-error -synctex=1 %S' $fname
-mv $fname.pdf ../es"$1"-soluzione.pdf
+mv $fname.pdf ../pdf/es"$1"-soluzione.pdf
 
 # remove everything except .tex
 rm -f *.!(tex)
