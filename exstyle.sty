@@ -1,0 +1,90 @@
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\frenchspacing
+
+% maths
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{cancel}
+\usepackage{mleftright}
+\mleftright
+
+% figures and tables
+\usepackage{booktabs}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+% typography
+\usepackage[stretch=10, shrink=10]{microtype}
+\usepackage[%
+    range-phrase=--,
+    range-units=single,
+    output-decimal-marker={,},
+    detect-all]{siunitx}
+\usepackage{lmodern}
+\usepackage{eucal}
+\usepackage{bm}
+
+% solution environment, to be shown optionally
+\newenvironment{solution}{\bigbreak\noindent\textit{Soluzione.}}{}
+\usepackage{comment}
+\ifdefined\hidesolutions
+    \excludecomment{solution}
+\else
+\fi
+
+% hint environment
+\newenvironment{hint}{\noindent\textit{Suggerimento.}}{}
+
+% other stuff
+\usepackage[hidelinks]{hyperref}
+
+% macros
+\usepackage{xparse}
+%% redefinitions
+\renewcommand{\theta}{\vartheta}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\hbar}{\hslash}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\propto}{\sim}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+%% special operators
+\newcommand{\eu}{e}
+\newcommand{\iu}{i}
+\newcommand{\op}[1]{\hat{#1}}
+\newcommand{\I}{\mathbb{I}}
+\protected\def\arccos{\qopname\relax o{\vphantom{i}arccos}}
+\protected\def\cos{\qopname\relax o{\vphantom{i}cos}}
+%% special sets
+\newcommand{\Cc}{\mathbb{C}}
+\newcommand{\Rr}{\mathbb{R}}
+\newcommand{\Nn}{\mathbb{N}}
+%% vectors
+\renewcommand{\vec}[1]{\bm{#1}}
+\newcommand{\uvec}[1]{\vec{\hat{#1}}}
+%% derivatives
+\newcommand{\dd}{d}
+\NewDocumentCommand{\diff}{s o m m}{%
+    \IfBooleanTF{#1}%
+        {\dd\IfValueT{#2}{^{#2}} #3 / %
+         \dd #4\IfValueT{#2}{^{#2}}}%
+        {\frac{\dd\IfValueT{#2}{^{#2}} #3}%
+              {\dd #4\IfValueT{#2}{^{#2}}}}}
+\NewDocumentCommand{\pdiff}{s o m m}{%
+    \IfBooleanTF{#1}%
+        {\partial\IfValueT{#2}{^{#2}} #3 / %
+         \partial #4\IfValueT{#2}{^{#2}}}%
+        {\frac{\partial\IfValueT{#2}{^{#2}} #3}%
+              {\partial #4\IfValueT{#2}{^{#2}}}}}
+%% delimiters
+\DeclarePairedDelimiter\ABS{\lvert}{\rvert}
+% add star when following large operators for better spacing
+\NewDocumentCommand{\abs}{s o m}{%
+    \IfBooleanTF{#1}{{}}{}%
+    \IfValueTF{#2}{\ABS[#2]{#3}}{\ABS{#3}}}
+\DeclarePairedDelimiter\expval{\langle}{\rangle}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}

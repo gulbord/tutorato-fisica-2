@@ -1,0 +1,112 @@
+\documentclass[10pt]{gulartcl}
+\usepackage{../exstyle}
+
+\title{Esercizio settimanale n. 2}
+\author{Guglielmo Bordin}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\noindent
+Un filo di lunghezza infinita e densità di carica uniforme $\lambda$
+viene disposto nella configurazione indicata in figura. Calcolare modulo e
+direzione del campo elettrico risultante nel punto $O$.
+
+\bigbreak
+\begin{center}
+\begin{tikzpicture}
+    \draw[dotted] (0, 3) -- (0, 2.5);
+    \draw (0, 2.5) -- (0, 1) arc (180:270:1); 
+    \draw (1, 0) -- (2.5, 0);
+    \draw[dotted] (2.5, 0) -- (3, 0);
+    \draw (1, 1) -- ++(225:1)
+        node[midway, anchor=north west, inner sep=1pt] {$R$};
+    \node[fill, circle, inner sep=1pt, label={$O$}] at (1, 1) {};
+\end{tikzpicture}
+\end{center}
+\bigbreak
+
+\begin{hint}
+Per risolvere l’integrale
+\[
+    \mathcal{I} = \int_{0}^{\infty} \frac{R}{(x^2 + R^2)^{3/2}} \, \dd x
+\]
+potete usare la sostituzione $x / R = \tan u$. Vi invito a provare a fare i
+conti, ma se non riuscite a proseguire passate direttamente al risultato
+finale $\mathcal{I} = 1 / R$, non toglierò punti.
+\end{hint}
+
+\begin{solution}
+Possiamo cominciare pensando di scomporre il campo totale nella somma
+(vettoriale) dei campi prodotti dai due tratti rettilinei di filo e di
+quello prodotto dal tratto curvo. Occupiamoci prima dei tratti rettilinei:
+esaminiamo il problema generico del campo prodotto da un filo infinitamente
+esteso lungo una sola direzione, in un punto distante $R$ dall’estremità
+finita.
+
+Facendo riferimento a figura~\ref{fig:thread-field}, partiamo considerando
+un pezzetto infinitesimo di filo $\dd x$, che avrà carica $\lambda\,\dd x$
+e produrrà nel punto di coordinate $x = 0$ e $y = R$ un campo di modulo
+\begin{equation}
+    \dd E = \frac{\lambda\, \dd x}{4 \pi \epsilon_0 (x^2 + R^2)}.
+    \label{eq:thread-field-dd}
+\end{equation}
+Possiamo scomporre tale campo nelle componenti $x$ e $y$: seguendo il
+disegno, la componente $x$ sarà negativa e pari a
+\begin{equation}
+    \dd E_x = - \frac{\lambda\, \dd x}{4 \pi \epsilon_0 (x^2 + R^2)}
+    \cos\theta = - \frac{\lambda x}{4 \pi \epsilon_0 (x^{2} +
+    R^{2})^{3/2}} \, \dd x.
+\end{equation}
+
+Da qui, possiamo integrare lungo $x$, partendo da $x = 0$ e proseguendo
+fino all’infinito, per ottenere la componente $x$ del campo prodotto dal
+filo intero:
+\begin{equation}
+    E_x = -\frac{\lambda}{4 \pi \epsilon_0} \int_{0}^{\infty}
+    \frac{x}{(x^{2} + R^{2})^{3/2}}\, \dd x.
+\end{equation}
+Per risolvere l’integrale possiamo sfruttare la sostituzione $u^2 = x^2 +
+R^2$, che differenziata restituisce
+\begin{equation}
+    \cancel{2}u \, \dd u = \cancel{2}x \, \dd x.
+\end{equation}
+Pertanto, ricordando di trasformare anche gli estremi di integrazione,
+otteniamo
+\begin{equation}
+    E_x = - \frac{\lambda}{4 \pi \epsilon_0} \int_{R}^{\infty}
+    \frac{\cancel{u}}{u^{\cancel{3}\, 2}} \, \dd u = - \frac{\lambda}{4 \pi
+    \epsilon_0} \left[-\frac{1}{u}\right]_{R}^{\infty} = -
+    \frac{\lambda}{4\pi\epsilon_0 R}.
+\end{equation}
+
+Ritorniamo ora all’espressione del campo infinitesimo
+\eqref{eq:thread-field-dd} e consideriamone invece la componente $y$:
+\begin{equation}
+    \dd E_y = \frac{\lambda\, \dd x}{4\pi\epsilon_0 (x^{2} + R^{2})}
+    \sin\theta,
+\end{equation}
+che sostituendo l’espressione per $\sin\theta$, ricavata anche qui dal
+disegno, diventa
+\begin{equation}
+    \dd E_y = \frac{\lambda}{4\pi\epsilon_0} \frac{R}{(x^{2} +
+    R^{2})^{3/2}}\, \dd x.
+\end{equation}
+Ora possiamo integrare lungo $x$, come prima:
+\begin{equation}
+    E_y = \frac{\lambda}{4\pi\epsilon_0} \int_{0}^{\infty} \frac{R}{(x^{2}
+    + R^{2})^{3/2}} \, \dd x.
+\end{equation}
+
+Sfortunatamente, l’assenza di $x$ al numeratore complica notevolmente
+l’integrale. Una possibile strada per risolverlo è quella indicata dal
+suggerimento. Partiamo riarrangiando i termini al denominatore:
+\begin{equation}
+    \int_{0}^{\infty} \frac{R}{(x^{2} + R^{2})^{3/2}} \, \dd x =
+    \int_{0}^{\infty} \frac{R}{[R^2(1 + x^2 / R^2)]^{3/2}}\, \dd x =
+    \frac{1}{R^2} \int_{0}^{\infty} \frac{1}{(1 + x^{2} / R^{2})^{3/2}}\,
+    \dd x.
+\end{equation}
+\end{solution}
+\end{document}

@@ -1,0 +1,25 @@
+#!/bin/bash
+if [[ $# -eq 0 ]] ; then
+    echo "No argument given!"
+    exit 0
+fi
+
+fname=ex"$1"
+
+cd $fname
+# remove everything except .tex file
+shopt -s extglob
+rm -f *.!(tex)
+
+# generate pdf without solution
+latexmk -jobname=$fname -g -silent -pdf -pdflatex='pdflatex %O -halt-on-error -synctex=1 "\def\hidesolutions{1}\input{%S}"' $fname
+mv $fname.pdf ../es"$1"-testo.pdf
+
+# generate pdf with solution
+latexmk -jobname=$fname -g -silent -pdf -pdflatex='pdflatex %O -halt-on-error -synctex=1 %S' $fname
+mv $fname.pdf ../es"$1"-soluzione.pdf
+
+# remove everything except .tex
+rm -f *.!(tex)
+
+cd ..
