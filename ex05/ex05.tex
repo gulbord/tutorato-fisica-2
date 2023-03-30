@@ -1,0 +1,57 @@
+\documentclass[10pt]{gulartcl}
+\usepackage{../exstyle}
+
+\title{Esercizio settimanale n. 5}
+\author{Guglielmo Bordin}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\noindent
+Una sfera metallica ha una densità di carica superficiale $\sigma =
+\qty{25}{nC\per m\squared}$ e un raggio $R$ minore di $2$ metri. A distanza
+$a = \qty{2}{m}$ dal centro della sfera il potenziale elettrico vale
+\qty{500}{V} e l’intensità del campo elettrico \qty{250}{V \per m} (il
+riferimento per il potenziale è all’infinito, dove lo si considera pari a
+$0$).
+
+\begin{itemize}
+    \item Qual è il raggio della sfera?
+    \item Qual è il suo potenziale?
+\end{itemize}
+
+\begin{solution}
+Il raggio si può trovare a partire dal valore del campo o del potenziale a
+\qty{2}{m} dal centro della sfera. Si possono fare i conti sia con l’uno
+che con l’altro; scegliamo il potenziale.
+
+Sappiamo che il potenziale prodotto da una sfera carica al suo esterno ha
+simmetria radiale e vale, in un punto a distanza $r$ dal suo centro,
+\begin{equation}
+    V(r) = \frac{Q}{4\pi\epsilon_0 r},
+\end{equation}
+dove $Q$ è la carica totale della sfera, che riscriviamo come $4\pi R^2 \sigma$
+dato che disponiamo della densità superficiale. Noi sappiamo il valore in
+$r = a$, quindi sostituiamo:
+\begin{equation}
+    V(a) = \qty{500}{V} = \frac{Q}{4\pi\epsilon_0 a} =
+    \frac{\sigma\cancel{4 \pi} R^2}{\cancel{4\pi} \epsilon_0 a},
+\end{equation}
+e riarrangiando i termini otteniamo il valore del raggio $R$:
+\begin{equation}
+    R = \sqrt{\frac{\epsilon_0 a V(a)}{\sigma}} = \qty{0.6}{m}.
+\end{equation}
+
+La sfera è conduttrice, dunque ogni suo punto si trova allo stesso
+potenziale, che chia\-mia\-mo $V_{\mathrm{s}}$. Per calcolarlo possiamo usare
+l’espressione del potenziale in un punto sulla superficie (il valore sarà
+lo stesso anche lì):
+\begin{equation}
+    V_{\mathrm{s}} = \frac{Q}{4\pi\epsilon_0 R} = \frac{\sigma \cancel{4\pi}
+    R^{\bcancel{2}}}{\cancel{4\pi}\epsilon_0 \bcancel{R}} = \frac{\sigma
+    R}{\epsilon_0} = \qty{1700}{V}.
+\end{equation}
+\end{solution}
+\end{document}
+
