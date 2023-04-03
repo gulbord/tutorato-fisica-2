@@ -43,4 +43,41 @@ cilindrico sapendo che il campo elettrico totale al suo esterno è nullo.
     \draw[<->] (0, 1) -- +(1.2, 0) node[midway, below] {$b$};
 \end{tikzpicture} 
 \end{center}
+
+\begin{solution}
+Per rispondere conviene applicare il teorema di Gauss. Consideriamo una
+superficie cilindrica $\Sigma$ di raggio $r$ maggiore del raggio esterno
+$b$ del guscio cilindrico e altezza $h$ arbitraria. Il flusso del campo
+elettrico attraverso $\Sigma$ è, per ipotesi, nullo: il flusso parziale
+attraverso la superficie superiore e quella inferiore è nullo per via della
+direzione delle linee di campo, che è radiale per ragioni di simmetria, e
+anche il flusso attraverso la superficie laterale è nullo perché vogliamo
+$\vec{E} = \vec{0}$ all’esterno del cilindro.
+
+Per la legge di Gauss abbiamo
+\begin{equation}
+    \Phi_{\Sigma}(\vec{E}) = \frac{Q_{\mathrm{int}}}{\epsilon_0}, 
+\end{equation}
+dove $Q_{\mathrm{int}}$ è la carica totale racchiusa dalla superficie
+costruita. Per avere $\Phi_{E} = 0$ dobbiamo quindi calcolare
+$Q_{\mathrm{int}}$ e azzerarla.
+
+La carica dovuta al filo è semplicemente la densità lineare $\lambda$
+moltiplicata per la lunghezza del tratto «tagliato» da $\Sigma$. La carica
+dovuta al guscio cilindrico è data invece dalla densità volumetrica $\rho$
+moltiplicata per il volume tagliato, cioè $\pi h (b^{2} -
+a^{2})$.\footnote{Per ricavare questa formula si può pensare al volume di
+    un cilindro di raggio $b$ e altezza $h$, che è $\pi b^{2} h$, e
+    sottrarci il volume di un cilindro di uguale altezza ma raggio
+    $a$, cioè $\pi a^{2} h$.} Arriviamo dunque a
+\begin{equation}
+    \lambda \cancel{h} + \rho \pi \cancel{h} (b^{2} - a^{2}) = 0,
+\end{equation}
+e quindi la densità cercata è data da
+\begin{equation}
+    \rho = - \frac{\lambda}{\pi(b^{2} - a^{2})} = \frac{\qty{2}{nC \per
+    cm}}{\pi [(\qty{3}{cm})^{2} - (\qty{1}{cm})^{2}]} = \qty{80}{pC \per
+    \cm\cubed} = \qty{80}{\micro C \per m\cubed}.
+\end{equation}
+\end{solution}
 \end{document}
