@@ -1,0 +1,81 @@
+\documentclass[10pt]{gulartcl}
+\usepackage{../exstyle}
+
+\title{Esercizio settimanale n. 6}
+\author{Guglielmo Bordin}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\noindent
+Tre armature piane conduttrici, di area $\Sigma = \qty{0.25}{m\squared}$,
+sono disposte rispettivamente nei piani di equazione $x_{1} =
+\qty{1.5}{cm}$, $x_{2} = \qty{3.0}{cm}$, $x_{3} = \qty{4.5}{cm}$.
+L’armatura centrale è collegata a terra, mentre le armature 1 e 3 sono
+isolate, con densità di carica $\sigma_{1} = \qty{5}{\micro C \per
+m\squared}$ e $\sigma_{3} = \qty{-2}{\micro C \per m\squared}$
+rispettivamente. Tra le armature 1 e 2 e tra le armature 2 e 3 si trovano
+due dielettrici di costanti dielettriche relative $\kappa_{1} = 3$ e
+$\kappa_{2} = 2$ rispettivamente.
+\begin{itemize}
+    \item Determinare il potenziale $V(x)$ in funzione della posizione $x$
+        all’interno del sistema di armature, in particolare il valore di
+        $V(x_{3})$.
+\end{itemize}
+Le armature 1 e 3 vengono poi collegate tra loro da un filo conduttore.
+\begin{itemize}
+    \item Determinare le densità di carica $\sigma'_{1}$ e $\sigma'_{3}$
+        presenti ora sulle armature 1 e 3. 
+\end{itemize}
+\begin{hint}
+Quando sono collegate le armature si trovano allo stesso potenziale.
+\end{hint}
+
+\bigbreak
+
+% plates + dielectrics code
+\newcommand\platewidth{0.1}
+\newcommand\capacitor[1]{
+    \begin{scope}[xshift=#1cm]
+        % plates
+        \draw (-\platewidth, 0) rectangle (0, 3);
+        \draw (1.5 - \platewidth / 2, 0)
+              rectangle
+              (1.5 + \platewidth / 2, 3);
+        \draw (3, 0) rectangle (3 + \platewidth, 3);
+
+        % dielectrics
+        \fill[fill=gray!70] (0, 0) rectangle (1.5 - \platewidth / 2, 3);
+        \fill[fill=gray!30] (1.5 + \platewidth / 2, 0) rectangle (3, 3);
+
+        % ground
+        \draw (1.5, 0) -- ++(0, -0.8)
+            ++(-0.4, 0) -- ++(0.8, 0) 
+            ++(-0.65, -0.2) -- ++(0.5, 0)
+            ++(-0.35, -0.2) -- ++(0.2, 0);
+
+        % labels
+        \node at (0.75 - \platewidth / 4, 2) {$\kappa_{1}$}; 
+        \node at (2.25 + \platewidth / 4, 2) {$\kappa_{2}$};
+    \end{scope}
+}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+    % first configuration
+    \capacitor{0};
+    \node[left] at (-\platewidth, 1) {$\sigma_{1}$};
+    \node[right] at (3 + \platewidth, 1) {$\sigma_{3}$};
+
+    % second configuration
+    \capacitor{6};
+    \begin{scope}[xshift=6cm]
+        \draw (-\platewidth, 2.5) -- ++(-0.5, 0) -- ++(0, 1)
+            -- ++(4 + 2 * \platewidth, 0) -- ++(0, -1) -- ++(-0.5, 0);
+        \node[left] at (-\platewidth, 1) {$\sigma'_{1}$};
+        \node[right] at (3 + \platewidth, 1) {$\sigma'_{3}$};
+    \end{scope}
+\end{tikzpicture}
+\end{center}
+\end{document}
