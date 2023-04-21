@@ -1,0 +1,59 @@
+\documentclass[10pt]{gulartcl}
+\usepackage[version=4]{mhchem}
+\usepackage{../exstyle}
+
+\title{Esercizio settimanale n. 7}
+\author{Guglielmo Bordin}
+\date{\today}
+
+\begin{document}
+\maketitle 
+
+\noindent
+La resistività dell’acqua di mare è di circa \qty{0.25}{\ohm m}. I
+portatori di carica sono principalmente ioni \ce{Na+} e \ce{Cl-}, e di
+ciascuno di essi ce ne sono circa \num{3e26} per \unit{m\cubed}. Se
+riempiamo un tubo di plastica lungo \qty{2}{m} con acqua di mare e
+colleghiamo una batteria da \qty{12}{V} a degli elettrodi presenti sulle
+due estremità, quale sarà la velocità di deriva degli ioni risultante?
+
+\begin{solution}
+Sappiamo che la densità di corrente equivale a
+\begin{equation}
+    j = n e v_\mathrm{d},
+    \label{eq:j=nev}
+\end{equation}
+dove $v_{\mathrm{d}}$ è la velocità di deriva che cerchiamo e $n$ è la
+densità (numerica) di portatori di carica. Nel nostro caso i portatori di
+carica sono due, gli ioni sodio e gli ioni cloruro, ciascuno con
+concentrazione \qty{3e26}{\per\meter\cubed}: dunque $n =
+\qty{6e26}{\per\meter\cubed}$.
+
+Cerchiamo dunque di ottenere un’altra espressione per $j$ in base ai dati
+forniti. Conosciamo la lunghezza del tubo e la differenza di potenziale tra
+le due estremità, e dunque anche il campo elettrico. Possiamo perciò usare
+la legge di Ohm in versione microscopica,
+\begin{equation}
+    j = \sigma E = \frac{1}{\rho} \frac{V}{L},
+\end{equation}
+dove $L = \qty{2}{m}$ è la lunghezza del tubo.
+
+Alternativamente, possiamo vedere $j$ come l’intensità di corrente divisa
+per l’area del tubo, usare la legge di Ohm macroscopica e l’espressione per
+la resistenza di un tubo:
+\begin{equation}
+    j = \frac{i}{A} = \frac{V / R}{A}
+      = \frac{V}{\bcancel{A}} \frac{\bcancel{A}}{\rho L}
+      = \frac{V}{\rho L}.
+\end{equation}
+
+Inserendo il risultato nell’equazione \eqref{eq:j=nev} otteniamo
+\begin{equation}
+\begin{split}
+    v_{\mathrm{d}} &= \frac{j}{n e} = \frac{V}{n e \rho L} \\
+    &= \frac{\qty{12}{V}}{(\qty{6e26}{\per\meter\cubed}) (\qty{1.6e-19}{C})
+    (\qty{0.25}{\ohm m}) (\qty{2}{m})} = \qty{2.5e-7}{m\per s}.
+\end{split}
+\end{equation}
+\end{solution}
+\end{document}
