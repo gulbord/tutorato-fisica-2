@@ -78,4 +78,85 @@ Quando sono collegate le armature si trovano allo stesso potenziale.
     \end{scope}
 \end{tikzpicture}
 \end{center}
+
+\begin{solution}
+L’armatura centrale, seppur non carica come quelle esterne, è anch’essa
+conduttrice: dunque per induzione elettrostatica sulla sua superficie
+affacciata al dielettrico 1 si deposita una densità di carica $-\sigma_1$
+(negativa), mentre sulla superficie affacciata all’altro dielettrico si
+deposita una densità di carica $-\sigma_3$ (positiva). In sostanza, il
+sistema diventa equivalente a due condensatori in serie; nella regione
+occupata dal dielettrico 1 il campo è quello di un condensatore con carica
+$\pm \sigma_1$ sulle armature, cioè $\sigma_1 / \kappa_1 \epsilon_0$, e
+analogamente per la regione occupata dal dielettrico 2, dove il campo è
+quello di un condensatore con carica $\pm \abs{\sigma_3}$ sulle armature,
+cioè $\abs{\sigma_3} / \kappa_2 \epsilon_0$.
+
+Per calcolare il potenziale integriamo il campo elettrico. Innanzitutto,
+poniamo come riferimento di potenziale nullo l’armatura centrale collegata
+a terra. Poi possiamo iniziare dalla regione 1, dove il campo è $\sigma_1 /
+\kappa_1 \epsilon_0$ diretto verso destra:
+\begin{alignat}{2}
+    V(x) &= \cancel{V(x_2)}
+            -\int_{x_2}^{x} \frac{\sigma_1}{\kappa_1 \epsilon_0} \, dx'
+          = \frac{\sigma_1}{\kappa_1 \epsilon_0} (x_2 - x)
+         && \quad \text{per } x \in [x_1, x_2]. \\
+\intertext{Proseguiamo nella regione 2, dove il campo è $\abs{\sigma_3} /
+\kappa_2 \epsilon_0 = -\sigma_3 / \kappa_2 \epsilon_0$ diretto verso
+destra:}
+    V(x) &= \cancel{V(x_2)} -\int_{x_2}^{x}
+            \biggl(-\frac{\sigma_3}{\kappa_2 \epsilon_0}\biggr) \, dx'
+          = \frac{\sigma_3}{\kappa_2 \epsilon_0}(x - x_2)
+         && \quad \text{per } x \in [x_2, x_3].
+\end{alignat}
+Nelle considerazioni sui segni è importante tenere a mente che se il
+potenziale centrale è nullo, sull’armatura carica positivamente ci
+aspettiamo un potenziale \emph{positivo} e su quella carica negativamente
+un potenziale \emph{negativo} (come appunto succede per le espressioni
+scritte sopra).
+
+Il potenziale in $x = x_3$ vale dunque
+\begin{equation}
+    V(x_3) = \frac{\sigma_3}{\kappa_2 \epsilon_0}(x_3 - x_2)
+          = - \frac{\qty{2e-6}{C \per m\squared}}{2(\qty{8.9e-12}{F/m})} 
+            (\qty{1.5e-2}{m})
+          = -\qty{1.7}{kV}.
+\end{equation}
+
+Quando le armature 1 e 3 vengono collegate dal filo conduttore, la carica
+presente su di esse si redistribuisce affinché raggiungano lo stesso
+potenziale. Abbiamo quindi due condizioni da imporre per trovare
+$\sigma'_1$ e $\sigma'_3$: la conservazione della carica \emph{totale}:
+\begin{equation}
+    \sigma'_1 + \sigma'_3 = \sigma_1 + \sigma_3,
+    \label{eq:system-1st}
+\end{equation}
+e il raggiungimento dello stesso potenziale, ossia $V'(x_1) = V'(x_3)$
+(ricicliamo quindi le espressioni ricavate in precedenza sostituendo le
+densità di carica):
+\begin{equation}
+    \frac{\sigma'_1}{\kappa_1 \epsilon_0} (x_2 - x_1) =
+    \frac{\sigma'_3}{\kappa_2 \epsilon_0} (x_3 - x_2).
+    \label{eq:system-2nd}
+\end{equation}
+
+Poiché $x_3 - x_2 = x_2 - x_1$ troviamo subito dalla \eqref{eq:system-2nd}
+\begin{equation}
+    \sigma'_3 = \frac{\kappa_2}{\kappa_1} \sigma'_1,
+\end{equation}
+che sostituita nella \eqref{eq:system-1st} dà
+\begin{equation}
+    \biggl(1 + \frac{\kappa_2}{\kappa_1}\biggr) \sigma'_1 = \sigma_1 +
+    \sigma_3.
+\end{equation}
+Dunque in definitiva:
+\begin{align}
+    \sigma'_1 &= \frac{\kappa_1}{\kappa_1 + \kappa_2}(\sigma_1 + \sigma_3) =
+    \frac{3}{5} (\qty{3}{\micro C \per m\squared}) = \qty{1.8}{\micro C \per
+    m\squared}, \\
+    \sigma'_3 &= \frac{\kappa_2}{\kappa_1 + \kappa_2}(\sigma_1 + \sigma_3)
+    = \frac{2}{5} (\qty{3}{\micro C\per m\squared}) = \qty{1.2}{\micro
+    C\per m\squared}.
+\end{align}
+\end{solution}
 \end{document}
