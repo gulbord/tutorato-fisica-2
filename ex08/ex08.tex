@@ -1,0 +1,112 @@
+\documentclass[10pt]{gulartcl}
+\usepackage{../exstyle}
+
+\title{Esercizio settimanale n. 8}
+\author{Guglielmo Bordin}
+\date{\today}
+
+\begin{document}
+\maketitle 
+
+\noindent
+Un rudimentale cannone protonico è dotato di un sistema di accelerazione e
+puntamento schematizzato in figura. Un fascio di protoni attraversa un
+canale dove è accelerato da una differenza di potenziale $V =
+\qty{30}{kV}$. All’uscita del canale i protoni entrano in una regione
+circolare di raggio $R = \qty{1}{m}$ permeata da un campo magnetico $B$
+uniforme e ortogonale al piano in cui si muovono i protoni, di intensità e
+verso regolabili.
+
+Sotto l’azione del campo magnetico i protoni percorrono
+un tratto di circonferenza di raggio $r$ all’interno della regione
+magnetizzata, per poi uscire dal cerchio in una direzione che forma un
+angolo $\theta$ con la direzione iniziale.
+\begin{itemize}
+    \item Fissato il potenziale $V$, che valore di $B$ bisogna impostare
+        per sparare i protoni a un certo angolo $\theta$? In particolare,
+        calcolare il valore necessario per sparare a \qty{45}{\degree}
+        verso sinistra.
+    \item Perché cambiamo $B$ e non $V$ per decidere la direzione del
+        fascio? A cosa può servire variare $V$ invece?
+\end{itemize}
+\begin{hint}
+A un certo punto servirà scrivere il raggio di curvatura $r$ in funzione di
+$R$ e $\theta$: osservate il disegno per trovare la relazione geometrica.
+\end{hint}
+
+\bigbreak
+\begin{center}
+\begin{tikzpicture}[>=latex, scale=0.9]
+    \small
+    % lengths
+    \newdimen\radius
+    \radius=2cm
+    \newdimen\channel
+    \channel=2.5cm
+    % coordinates
+    \coordinate (O) at (0, 0);
+    \coordinate (A) at ($(O) - (\radius, 0)$);
+    \coordinate (B) at ($(O) + ({\radius * cos(60)}, {-\radius * sin(60)})$);
+
+    % entrance channel
+    \draw (O) circle (2);
+    \draw[pattern=north east lines]
+        ($(A) + (0, 0.3)$) rectangle ++(-\channel, 0.2);
+    \draw[pattern=north east lines]
+        ($(A) - (0, 0.3)$) rectangle ++(-\channel, -0.2);
+
+    % particle path with arrow
+    \begin{scope}[
+        decoration={
+            markings,
+            mark=at position 0.5 with {\arrow{latex}}
+        }
+    ]
+        \draw[postaction={decorate}] ($(A) - (\channel, 0)$) -- (A);
+        \draw[postaction={decorate}] (A) arc (90:30:{\radius * sqrt(3)});
+
+        % exit channel
+        \begin{scope}[shift={(B)}, rotate=-60]
+            \draw[postaction={decorate}]
+                (0, 0) -- (\channel, 0);
+            \draw[pattern=north east lines]
+                (0, 0.3) rectangle (\channel, 0.5);
+            \draw[pattern=north east lines]
+                (0, -0.3) rectangle (\channel, -0.5);
+            \draw[->] (2 * \channel / 3, 0.7)
+                arc (0:15:{\radius + 2 * \channel / 3});
+            \draw[->] (2 * \channel / 3, -0.7)
+                arc (0:-15:{\radius + 2 * \channel / 3});
+        \end{scope}
+    \end{scope}
+
+    % name paths to get center of curvature
+    \path[name path=vertical] (A) -- ++(0, -10);
+    \path[name path=diagonal] (B) -- ++(210:10);
+
+    % help lines
+    \draw[densely dashed,
+          name intersections={of=vertical and diagonal, by=C}]
+        (A) -- node[midway, above] {$R$} (O)
+            -- node[midway, right] {$R$} (B)
+            -- node[midway, anchor=north west] {$r$} (C)
+            -- node[midway, left] {$r$} (A)
+        (C) -- (O) -- ++(\radius, 0);
+
+    % angles
+    \draw ($(O) + (0.5, 0)$) arc (0:-60:0.5) node[midway, right] {$\theta$};
+    \draw ($(C) + (0, 0.5)$) arc (90:30:0.5)
+        node[pos=0.4, anchor=south west, circle,
+             inner sep=1.5pt, fill=white] {$\theta$};
+    \draw ($(A) + (0.2, 0)$) -- ++(0, -0.2) -- ++(-0.2, 0);
+    \draw (B) ++(210:0.2) -- ++(120:0.2) -- ++(30:0.2);
+
+    % other labels
+    \fill ($(O) + (0, \radius / 2)$) circle (1.5pt)
+        node[right] {$\vec{B}$};
+    \node[left] at ($(A) - (\channel, 0)$) {$\mathrm{p}^{+}$};
+    \draw[<->] ($(A) + (-\channel, 0.8)$)
+        -- node[midway, fill=white] {$V$} ++(\channel, 0);
+\end{tikzpicture}
+\end{center}
+\end{document}
