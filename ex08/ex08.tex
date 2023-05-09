@@ -81,8 +81,8 @@ $R$ e $\theta$: osservate il disegno per trovare la relazione geometrica.
     \end{scope}
 
     % name paths to get center of curvature
-    \path[name path=vertical] (A) -- ++(0, -10);
-    \path[name path=diagonal] (B) -- ++(210:10);
+    \path[name path=vertical] (A) -- ++(0, -4);
+    \path[name path=diagonal] (B) -- ++(210:4);
 
     % help lines
     \draw[densely dashed,
@@ -109,4 +109,81 @@ $R$ e $\theta$: osservate il disegno per trovare la relazione geometrica.
         -- node[midway, fill=white] {$V$} ++(\channel, 0);
 \end{tikzpicture}
 \end{center}
+
+\begin{solution}
+I protoni vengono inizialmente accelerati dalla differenza di potenziale
+$V$ fino a raggiungere una certa velocità $v$. Quando entrano nella regione
+con campo magnetico iniziano a risentire della forza di Lorentz, che se
+$\vec{B}$ ha verso uscente (come nel disegno) li fa curvare verso destra
+lungo un arco di circonferenza di raggio $r$, senza variare il modulo della
+velocità.
+
+La forza di Lorentz agisce come forza centripeta lungo la traiettoria
+circolare. Considerando un singolo protone, possiamo dunque scrivere
+\begin{equation}
+    e B v = \frac{m v^2}{r},
+    \label{eq:lorentz}
+\end{equation}
+dove $r$ è il raggio di curvatura, e $m$ è pari a \qty{1.67e-27}{kg}. Per
+determinare la velocità usiamo la conservazione dell’energia: l’energia
+cinetica all’entrata del cerchio è pari all’energia potenziale
+elettrostatica dovuta alla differenza di potenziale $V$,
+\begin{equation}
+    \frac{1}{2} m v^2 = e V.
+\end{equation}
+Da qui troviamo subito
+\begin{equation}
+    v = \sqrt{\frac{2 e V}{m}}.
+    \label{eq:v-expr}
+\end{equation}
+
+Usando queste relazioni, riprendiamo l’equazione \eqref{eq:lorentz}
+ricordando che stiamo cercando un’espressione di $B$ in funzione degli
+altri parametri del sistema. Scriviamo quindi
+\begin{equation}
+    B = \frac{m v}{e r} = \frac{m}{e r} \sqrt{\frac{2 e V}{m}}
+      = \frac{1}{r} \sqrt{\frac{2 m V}{e}}.
+    \label{eq:B-expr}
+\end{equation}
+
+Rimane da riscrivere $r$ in funzione di altre grandezze che possano essere
+direttamente misurate. Come suggerito, queste sono il raggio del cerchio
+$R$ e l’angolo di tiro $\theta$. Se osserviamo il disegno, notiamo che i
+due triangoli rettangoli dai bordi tratteggiati sono uguali (hanno un lato
+in comune e i restanti uguali); dunque la linea tratteggiata che parte dal
+centro del cerchio di raggio $R$ taglia in due l’angolo $\theta$ in basso.
+Concentrandoci su uno dei due triangoli rettangoli, possiamo quindi
+scrivere
+\begin{equation}
+    \tan\frac{\theta}{2}
+        = \frac{\text{cateto opposto}}{\text{cateto adiacente}} = \frac{R}{r}.
+\end{equation}
+Sostituendo nell’equazione \eqref{eq:B-expr} troviamo
+\begin{equation}
+    B(\theta) = \frac{1}{R} \sqrt{\frac{2 m V}{e}} \tan \frac{\theta}{2}. 
+    \label{eq:B(theta)}
+\end{equation}
+
+Se vogliamo il valore corrispondente a un angolo di \qty{45}{\degree}
+\emph{verso sinistra} dobbiamo so\-sti\-tu\-i\-re $\theta = -\pi / 4$, perché il
+disegno presuppone un’orientazione positiva in senso orario per $\theta$.
+Dunque
+\begin{equation}
+    B(-\pi / 4) = \frac{1}{\qty{1}{m}} \sqrt{\frac{2 (\qty{1.67e-27}{kg})
+    (\qty{30e3}{V})}{\qty{1.60e-19}{C}}} (-\num{0.414}) = \qty{-0.010}{T}.
+\end{equation}
+
+Dalla teoria, o anche invertendo l’equazione \eqref{eq:B(theta)} ponendo
+$\theta$ in funzione del resto, possiamo concludere che anche variando $V$
+potremmo variare l’angolo di tiro. La differenza principale sta nel fatto
+che, fissato un valore di $B$, saremmo in grado di sparare soltanto verso
+destra o verso sinistra! Ad esempio, con un vettore $\vec{B}$ uscente dal foglio i
+protoni non possono che curvare verso destra. Variando il potenziale
+possiamo \emph{cambiare la velocità}, e di conseguenza anche l’angolo di
+uscita, ma non possiamo «sconfinare» oltre la linea corrispondente a
+$\theta = 0$. Se cambiassimo il segno di $V$ i protoni neanche
+arriverebbero al cerchio, perché verrebbero accelerati nella direzione
+opposta. In definitiva, conviene agire su $V$ per regolare la velocità di
+uscita dei protoni e su $B$ per regolarne la direzione. 
+\end{solution}
 \end{document}
