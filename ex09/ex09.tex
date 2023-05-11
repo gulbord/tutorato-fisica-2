@@ -16,4 +16,30 @@ terreno. Immaginiamo che il meccanismo di generazione del campo sia
 descrivibile tramite una corrente elettrica che fluisce in un anello
 attorno al nucleo, all’altezza del suo equatore. Quanto dovrebbe valere
 tale corrente per spiegare il dato del campo al polo?
+
+\begin{solution}
+Se possiamo considerare la corrente localizzata interamente sull’equatore
+del nucleo, allora possiamo usare l’espressione per il campo magnetico
+lungo l’asse di una spira circolare percorsa da corrente:
+\begin{equation}
+    B(r) = \frac{\mu_0 i a^2}{2(r^2 + a^2)^{3 / 2}},
+\end{equation}
+dove $a$ è il raggio della spira e $r$ la distanza dal suo centro lungo
+l’asse.
+
+Guardando ai dati del problema, dobbiamo porre $a \approx R / 2$, il
+raggio del nucleo, e $r = R$, la distanza dal polo al centro della Terra.
+Otteniamo così
+\begin{equation}
+    B = \frac{\mu_0 i (R / 2)^2}{2[R^2 + (R / 2)^2]^{3 / 2}}
+      = \frac{\mu_0 i}{5 \sqrt{5} R}.
+\end{equation}
+Noi sappiamo $B$ e cerchiamo $i$, quindi invertiamo:
+\begin{equation}
+    i = \frac{5 \sqrt{5} R B}{\mu_0}
+      = \frac{5 \sqrt{5} \, (\qty{6.4e6}{m})(\qty{5e-5}{T})}%
+             {\qty{4\pi e-7}{kg.m\per C\squared}}
+      = \qty{2.8e9}{A}.
+\end{equation}
+\end{solution}
 \end{document}
