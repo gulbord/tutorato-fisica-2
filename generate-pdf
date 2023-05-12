@@ -6,7 +6,7 @@ fi
 
 fname=ex"$1"
 
-cd $fname
+cd src
 # remove everything except .tex file
 shopt -s extglob
 rm -f *.!(tex)
