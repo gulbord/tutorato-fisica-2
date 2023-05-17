@@ -9,7 +9,7 @@
 \maketitle 
 
 \noindent
-Una spira conduttrice di area $\Sigma = \qty{15}{cm\squared}$ e resistenza
+Una spira conduttrice di area $\Sigma = \qty{15}{cm^2}$ e resistenza
 $R = \qty{6}{m\ohm}$, ferma nello spazio, è attraversata da un campo
 magnetico $B$ perpendicolare alla sua superficie. L’induttanza della spira
 è trascurabile. Nell’intervallo di tempo da $0$ a $\tau = \qty{2}{s}$ il
@@ -23,4 +23,80 @@ flusso del campo attraverso la spira varia come
     \item Calcolare l’energia dissipata sulla resistenza nell’intervallo di
         tempo $(0, \tau)$.
 \end{itemize} 
+
+\begin{solution}
+Il flusso magnetico ha unità $\unit{Wb} = \unit{T.m^2}$, dunque $a$
+deve avere unità \unit{Wb \per s^2} per bilanciare il tempo al
+quadrato:
+\begin{equation}
+    [a] = \frac{[\Phi_B]}{[t][\tau - t]} = \unit{Wb \per s^2}
+        = \unit{V \per s}.
+\end{equation}
+
+Poiché la superficie $\Sigma$ è perpendicolare alla direzione del campo
+magnetico, possiamo scrivere il flusso come
+\begin{equation}
+    \Phi_B(t) = B(t) \Sigma,
+\end{equation}
+e dunque, utilizzando l’espressione fornita,
+\begin{equation}
+    a = \frac{\Phi_B(t)}{t(\tau - t)} = \frac{B(t) \Sigma}{t(\tau - t)}.
+\end{equation}
+Sostituendo $t = \tau / 2$ e $B = \qty{10}{mT}$ otteniamo
+\begin{equation}
+    a = \frac{B(\tau / 2) \Sigma}{\tau^2 / 4}
+      = \frac{4(\qty{1e-2}{T}) (\qty{1.5e-3}{m^2})}{\qty{4}{s^2}}
+      = \qty{1.5e-5}{Wb \per s^2}.
+\end{equation}
+
+Il flusso di $\vec{B}$ attraverso la spira varia nel tempo, dunque vi si
+genera una forza elettromotrice $\femi$ la cui espressione
+è data dalla legge di Faraday:
+\begin{equation}
+    \femi(t) = - \diff{}{t} \Phi_B(t).
+\end{equation}
+Il segno meno di Lenz in questo caso è irrilevante e possiamo ometterlo dai
+conti successivi; faremo calcoli energetici, quindi le direzioni e i segni
+non ci interessano. $\femi$ corrisponde alla differenza di potenziale che
+viene a formarsi ai capi della resistenza: la potenza dissipata per effetto
+Joule sarà quindi
+\begin{equation}
+    P(t) = \frac{\femi^2(t)}{R}.
+\end{equation}
+
+Calcoliamo dunque innanzitutto la f.e.m. indotta, derivando il flusso
+rispetto al tempo:
+\begin{equation}
+    \femi(t) = \diff{}{t} [a t (\tau - t)] = a \diff{}{t} (\tau t - t^2)
+             = a (\tau - 2t).
+\end{equation}
+Poi, osserviamo che la \emph{potenza} è l’energia (in questo caso,
+l’energia dissipata) \emph{per unità di tempo}. Per avere quindi l’energia
+dissipata complessivamente in un certo intervallo di tempo, dobbiamo
+integrare. In questo caso non basta moltiplicare per la durata
+dell’intervallo, perché la f.e.m. non è costante nel tempo.
+
+Procediamo quindi con l’integrazione di $P(t)$ da $t = 0$ a $t = \tau$, per
+ottenere l’energia dissipata $W$:
+\begin{equation}
+    W = \frac{a^2}{R} \int_{0}^{\tau} (\tau - 2t)^2 \, dt.
+\end{equation}
+Qui possiamo fare la seguente sostituzione:
+\begin{equation}
+    2t - \tau = u, \quad dt = du / 2,
+\end{equation}
+che implica (ricordandosi di trasformare anche gli estremi di integrazione)
+\begin{equation}
+    W = \frac{a^2}{2R} \int_{-\tau}^{+\tau} u^2 \, du
+      = \frac{a^2}{2R} \biggl[\frac{u^3}{3}\biggr]_{u = -\tau}^{u = +\tau}
+      = \frac{a^2}{2R}\biggl(\frac{\tau^3}{3} + \frac{\tau^3}{3}\biggr)
+      = \frac{a^2 \tau^3}{3 R}.
+\end{equation}
+Sostituendo i valori numerici otteniamo
+\begin{equation}
+    W = \frac{(\qty{1.5e-5}{V \per s})^2 (\qty{2}{s})^3}%
+             {3 (\qty{6e-3}{\ohm})}
+      = \qty{1e-7}{J}.
+\end{equation}
+\end{solution}
 \end{document}
