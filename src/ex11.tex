@@ -24,4 +24,97 @@ sapendo che il suo modulo vale $B_0 = E_0 / c$ nell’origine a $t = 0$.
 (scegliete la più appropriata), e ricordarsi della costante di
 integrazione.
 \end{hint}
+
+\begin{solution}
+\textbf{Il testo che vi ho consegnato aveva un problema:} la
+condizione al contorno «$B_0$ nell’origina a $t = 0$» non è sufficiente a
+garantire una soluzione univoca. Una consegna corretta (vedere più avanti
+perché) sarebbe stata:
+\begin{quote}
+    […] Derivare l’espressione del campo magnetico usando le leggi di
+    Maxwell, \emph{tralasciando termini costanti nel tempo}.
+\end{quote}
+Ne terrò conto nella correzione, mi scuso per il
+disagio.
+
+Conviene partire dalla legge di Faraday in forma differenziale:
+\begin{equation}
+    \curl{E} = -\pdiff{\vec{B}}{t},
+\end{equation}
+integrando rispetto al tempo entrambi i lati dell’equazione otteniamo
+\begin{equation}
+    \vec{B}(t) = -\int \curl{E}(t) \, dt + \vec{B}_0.
+    \label{eq:B(t)-final}
+\end{equation}
+Possiamo chiamare $\vec{B}_0$ la costante di integrazione, che potrà
+dipendere da $x$, $y$, $z$ ma non dal tempo, la variabile su cui stiamo
+integrando.
+
+Dobbiamo quindi calcolare il rotore del campo elettrico. Per farlo
+possiamo usare il trucco del determinante:
+\begin{equation}
+\begin{split} 
+    \curl{E} &= \det
+    \begin{pmatrix}
+        \uvec{x} & \uvec{y} & \uvec{z} \\
+        \partial_x & \partial_y & \partial_z \\
+        E_x & E_y & E_z
+    \end{pmatrix} \\[0.25\baselineskip]
+             &= \left(\pdiff{E_y}{z} - \pdiff{E_z}{y}\right) \uvec{x}
+              + \left(\pdiff{E_z}{y} - \pdiff{E_y}{z}\right) \uvec{y}
+              + \left(\pdiff{E_x}{y} - \pdiff{E_y}{x}\right) \uvec{z}.
+\end{split}
+\end{equation}
+Nel nostro caso la componente $z$ è nulla, mentre $E_x$ ed $E_y$ dipendono
+soltanto da $z$. Ciò che rimane è quindi
+\begin{equation}
+    \curl{E} = \pdiff{E_y}{z} (\uvec{x} - \uvec{y})
+    = \frac{2\pi}{\lambda} E_0
+      \cos\left[\frac{2\pi}{\lambda}(z - ct)\right] (\uvec{x} - \uvec{y}).
+\end{equation}
+
+Riprendiamo ora l’equazione \eqref{eq:B(t)-final} e inseriamo quanto
+trovato:
+\begin{equation}
+    \vec{B}(t)
+    = \vec{B}_0 -\frac{2\pi}{\lambda} E_0 (\uvec{x} - \uvec{y})
+      \int \cos\left[\frac{2\pi}{\lambda} (z - ct)\right] \, dt.
+\end{equation}
+Qui possiamo effettuare la sostituzione di variabili
+\begin{equation}
+    \frac{2\pi}{\lambda} (z - ct) = u,
+\end{equation}
+che applicata ai differenziali dà
+\begin{equation}
+    -\frac{2 \pi c}{\lambda} \, dt = du \implies dt
+    = -\frac{\lambda}{2 \pi c} \, du.
+\end{equation}
+Sostituendo nell’integrale otteniamo
+\begin{equation}
+\begin{split}
+    \vec{B}(t)
+    &= \vec{B}_0 + \frac{E_0}{c} (\uvec{x} - \uvec{y})
+       \int \cos(u) \, du \\
+    &= \vec{B}_0 + \frac{E_0}{c} \sin(u) (\uvec{x} - \uvec{y}) \\
+    &= \vec{B}_0 + \frac{E_0}{c} \sin\left[\frac{2\pi}{\lambda}(z - ct)\right]
+       (\uvec{x} - \uvec{y}).
+\end{split}
+\end{equation}
+Qui nel secondo passaggio abbiamo inglobato la nuova costante di
+integrazione in $\vec{B}_0$, e risostituito la definizione di $u$ nel
+terzo.
+
+Ora dobbiamo ricordare che $\vec{B}_0$, per quanto sappiamo, è costante
+solo rispetto al tempo: possiamo scrivere per completezza $\vec{B}_0(x, y,
+z)$. Nell’origine a $t = 0$ il termine con il seno è nullo e rimane
+soltanto $\vec{B}_0(0, 0, 0)$ ($\vec{B}_0$ calcolato nell’origine).
+Con le informazioni fornite possiamo concludere che $\vec{B}_0(0, 0, 0)$ è
+un vettore di modulo $B_0 = E_0 / c$, ma niente di più! Seguiamo quindi
+la consegna «corretta» e tralasciamo i campi costanti nel tempo, ossia
+poniamo $\vec{B}_0 = \vec{0}$. La soluzione è dunque
+\begin{equation}
+    \vec{B}(t) = \frac{E_0}{c} \sin\left[\frac{2\pi}{\lambda}(z -
+    ct)\right] (\uvec{x} - \uvec{y}).
+\end{equation}
+\end{solution}
 \end{document}
