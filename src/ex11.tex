@@ -60,24 +60,25 @@ possiamo usare il trucco del determinante:
         \partial_x & \partial_y & \partial_z \\
         E_x & E_y & E_z
     \end{pmatrix} \\[0.25\baselineskip]
-             &= \left(\pdiff{E_y}{z} - \pdiff{E_z}{y}\right) \uvec{x}
-              + \left(\pdiff{E_z}{y} - \pdiff{E_y}{z}\right) \uvec{y}
-              + \left(\pdiff{E_x}{y} - \pdiff{E_y}{x}\right) \uvec{z}.
+             &= \left(\pdiff{E_z}{y} - \pdiff{E_y}{z}\right) \uvec{x}
+              + \left(\pdiff{E_x}{z} - \pdiff{E_z}{x}\right) \uvec{y}
+              + \left(\pdiff{E_y}{x} - \pdiff{E_x}{y}\right) \uvec{z}.
 \end{split}
 \end{equation}
 Nel nostro caso la componente $z$ è nulla, mentre $E_x$ ed $E_y$ dipendono
 soltanto da $z$. Ciò che rimane è quindi
 \begin{equation}
-    \curl{E} = \pdiff{E_y}{z} (\uvec{x} - \uvec{y})
-    = \frac{2\pi}{\lambda} E_0
-      \cos\left[\frac{2\pi}{\lambda}(z - ct)\right] (\uvec{x} - \uvec{y}).
+    \curl{E} = -\pdiff{E_y}{z} \uvec{x} + \pdiff{E_x}{z} \uvec{y}
+             = -\frac{2\pi}{\lambda} E_0
+               \cos\left[\frac{2\pi}{\lambda}(z - ct)\right]
+               (\uvec{x} - \uvec{y}).
 \end{equation}
 
 Riprendiamo ora l’equazione \eqref{eq:B(t)-final} e inseriamo quanto
 trovato:
 \begin{equation}
     \vec{B}(t)
-    = \vec{B}_0 -\frac{2\pi}{\lambda} E_0 (\uvec{x} - \uvec{y})
+    = \vec{B}_0 +\frac{2\pi}{\lambda} E_0 (\uvec{x} - \uvec{y})
       \int \cos\left[\frac{2\pi}{\lambda} (z - ct)\right] \, dt.
 \end{equation}
 Qui possiamo effettuare la sostituzione di variabili
@@ -93,11 +94,11 @@ Sostituendo nell’integrale otteniamo
 \begin{equation}
 \begin{split}
     \vec{B}(t)
-    &= \vec{B}_0 + \frac{E_0}{c} (\uvec{x} - \uvec{y})
+    &= \vec{B}_0 + \frac{E_0}{c} (\uvec{y} - \uvec{x})
        \int \cos(u) \, du \\
-    &= \vec{B}_0 + \frac{E_0}{c} \sin(u) (\uvec{x} - \uvec{y}) \\
+    &= \vec{B}_0 + \frac{E_0}{c} \sin(u) (\uvec{y} - \uvec{x}) \\
     &= \vec{B}_0 + \frac{E_0}{c} \sin\left[\frac{2\pi}{\lambda}(z - ct)\right]
-       (\uvec{x} - \uvec{y}).
+       (\uvec{y} - \uvec{x}).
 \end{split}
 \end{equation}
 Qui nel secondo passaggio abbiamo inglobato la nuova costante di
@@ -114,7 +115,7 @@ la consegna «corretta» e tralasciamo i campi costanti nel tempo, ossia
 poniamo $\vec{B}_0 = \vec{0}$. La soluzione è dunque
 \begin{equation}
     \vec{B}(t) = \frac{E_0}{c} \sin\left[\frac{2\pi}{\lambda}(z -
-    ct)\right] (\uvec{x} - \uvec{y}).
+    ct)\right] (\uvec{y} - \uvec{x}).
 \end{equation}
 \end{solution}
 \end{document}
