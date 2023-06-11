@@ -22,31 +22,36 @@ get_scores <- function(file) {
     # round to 0, 0.5, 1, 1.5, 2, 2.5, 3 to get the final grade
     grades$voto <- round(grades$media) / 2
 
+    # reorder columns
+    last <- ncol(grades)
+    grades <- grades[, c(1, last - 1, last, 2:(last - 2))]
+
     list(grades = grades, weights = weights)
 }
 
-chim <- get_scores("voti-chi.txt")
-chim_ind <- get_scores("voti-chi-ind.txt")
+df_to_md <- function(df, file) {
+    cat(paste(names(df), collapse = "|"), file = file)
+    cat("\n", file = file, append = TRUE)
+    cat(
+        paste(rep("-", ncol(df)), collapse = "|"),
+        file = file, append = TRUE
+    )
+    cat("\n", file = file, append = TRUE)
 
-# format for printing
-chim$grades$media <- format(chim$grades$media, digits = 2)
-chim$grades[is.na(chim$grades)] <- "SV"
-chim_ind$grades$media <- format(chim_ind$grades$media, digits = 2)
-chim_ind$grades[is.na(chim_ind$grades)] <- "SV"
+    for (i in seq_len(nrow(df))) {
+        cat(paste(df[i, ], collapse = "|"), file = file, append = TRUE)
+        cat("\n", file = file, append = TRUE)
+    }
+}
 
-write.table(
-    chim$grades, "voti-chi.csv",
-    quote = FALSE, row.names = FALSE
-)
-write.table(
-    format(chim$weights, digits = 3), "pesi-chi.csv",
-    quote = FALSE, col.names = "media"
-)
-write.table(
-    chim_ind$grades, "voti-chi-ind.csv",
-    quote = FALSE, row.names = FALSE
-)
-write.table(
-    format(chim_ind$weights, digits = 3), "pesi-chi-ind.csv",
-    quote = FALSE, col.names = "media"
-)
+print_scores <- function(data, file) {
+    data$grades$media <- format(data$grades$media, digits = 2)
+    data$grades[is.na(data$grades)] <- "SV"
+
+    df_to_md(data$grades, file)
+}
+
+# chimica
+get_scores("voti-chi.txt") |> print_scores("voti-chi.md")
+# chimica industriale
+get_scores("voti-chi-ind.txt") |> print_scores("voti-chi-ind.md")
